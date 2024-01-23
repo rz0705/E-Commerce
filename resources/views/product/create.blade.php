@@ -1,6 +1,6 @@
 @extends('layout.app')
 @section('content')
-<form class="max-w-sm mx-auto" method="POST" action="{{ route('product.store') }}">
+<form class="max-w-sm mx-auto" action="{{url('product/create')}}"  id="createProductForm" method="POST">
     @csrf
     <p class="text-center">Add Product</p>
     <hr>
@@ -59,7 +59,44 @@
         @enderror
     </div>
 
+    <div class="mb-1">
+        <label for="select_category" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">{{ __('Select Category') }}</label>
+        @foreach ($categories as $index => $category)
+            <input id="select_category_{{ $index }}" name="select_category[]" type="checkbox" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 dark:focus:ring-blue-600 dark:ring-offset-gray-800 focus:ring-2 dark:bg-gray-700 dark:border-gray-600" value="{{ $category->id }}" @if(in_array($category->id, old('select_category', []))) checked @endif>
+            <label for="select_category_{{ $index }}" class="ms-2 text-sm font-medium text-gray-900 dark:text-gray-300 pr-5">{{ $category->name }}</label>
+        @endforeach <br>
+        @error('select_category')
+            <span class="text-red-500 text-sm">{{ $message }}</span>
+        @enderror
+    </div>
+
     <button type="submit"
-        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">{{ __('Add Product') }}</button>
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" id="addproduct" >{{ __('Add Product') }}</button>
 </form>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        $('#createProductForm').on('submit', function(event){
+            event.preventDefault();
+            
+            // Include CSRF token in the data
+            var formData = $(this).serialize() + "&_token={{ csrf_token() }}";
+
+            // Update the URL to the correct route
+            var url = "{{ url('product/store') }}";
+
+            $.ajax({
+                url: url,
+                data: formData,
+                method: 'POST',
+                success: function(result) {
+                    alert('Product added successfully!')
+                },
+                error: function(xhr, status, error) {
+                    alert('Something went wrong!')
+                }
+            });
+        });
+    });
+</script>
 @endsection

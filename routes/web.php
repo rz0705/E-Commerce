@@ -27,7 +27,7 @@ Route::get('/users', [StoreUserController::class, 'index'])->name('user.index');
 
 //Products routes
 Route::get('/product/create', [StoreProductController::class, 'create'])->name('product.create');
-Route::post('/products', [StoreProductController::class, 'store'])->name('product.store');
+Route::post('/product/store', [StoreProductController::class, 'store'])->name('product.store');
 // Route::get('/products', [StoreProductController::class, 'index'])->name('product.index');
 Route::get('/product/card', [StoreProductController::class, 'card'])->name('product.card');
 

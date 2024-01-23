@@ -28,6 +28,7 @@ class StoreProductRequest extends FormRequest
             'description' => 'required|string|max:255',
             'image_path' => 'required',
             'price' => 'required|string',
+            'select_category' => 'required',
         ];
     }
 
@@ -41,6 +42,7 @@ class StoreProductRequest extends FormRequest
             'description.max' => 'Description must not exceed 255 characters.',
             'image_path.required' => 'Image path is required.',
             'price.required' => 'Price is required.',
+            'select_category.required' => 'Please choose product category.',
         ];
     }
 }

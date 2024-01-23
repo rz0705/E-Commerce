@@ -23,6 +23,11 @@ class Product extends Model
         'price',
     ];
 
+    public function categories()
+    {
+        return $this->belongsToMany(Category::class)->withTimestamps();
+    }
+
     /**
      * The attributes that should be hidden for serialization.
      *
