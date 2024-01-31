@@ -1,9 +1,9 @@
 <?php
 
-use App\Http\Controllers\StoreCategoryController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ProductController;
+use App\Http\Controllers\StoreCategoryController;
 use App\Http\Controllers\StoreUserController;
-use App\Http\Controllers\StoreProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,12 +26,18 @@ Route::post('/users', [StoreUserController::class, 'store'])->name('user.store')
 Route::get('/users', [StoreUserController::class, 'index'])->name('user.index');
 
 //Products routes
-Route::get('/product/create', [StoreProductController::class, 'create'])->name('product.create');
-Route::post('/product/store', [StoreProductController::class, 'store'])->name('product.store');
-// Route::get('/products', [StoreProductController::class, 'index'])->name('product.index');
-Route::get('/product/card', [StoreProductController::class, 'card'])->name('product.card');
+Route::prefix('product')->group(function () {
+    Route::get('/create', [ProductController::class, 'create'])->name('product.create');
+    Route::post('/store', [ProductController::class, 'store'])->name('product.store');
+});
+Route::get('products', [ProductController::class, 'index'])->name('product.card');
+Route::post('products', [ProductController::class, 'index'])->name('product.card');
 
-//Categorys routes
+// Route::group(['prefix'=>'products','as'=>'products.'], function(){
+//         Route::get('',[ProductController::class,'index'])->name('index');
+// });
+
+//Categories routes
 Route::get('/category/create', [StoreCategoryController::class, 'create'])->name('category.create');
 Route::post('/categories', [StoreCategoryController::class, 'store'])->name('category.store');
-
+Route::get('/categories', [StoreCategoryController::class, 'index'])->name('category.index');

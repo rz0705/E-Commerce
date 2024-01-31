@@ -3,19 +3,20 @@
         <div class="hidden md:flex items-center space-x-4" id="navbar-solid-bg">
             <ul class="flex flex-col md:flex-row space-y-2 md:space-y-0 md:space-x-6">
                 <li>
-                    <a href="{{ route('user.index') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Users</a>
-                </li>
-                {{-- <li>
-                    <a href="{{ route('product.index') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline display:none">Products</a>
-                </li> --}}
-                <li>
-                    <a href="{{ route('product.card') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Products</a>
+                    <a href="{{ route('user.index') }}"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Users</a>
                 </li>
                 <li>
-                    <a href="{{ route('category.create') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Categories</a>
+                    <a href="{{ route('product.card') }}"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Products</a>
                 </li>
                 <li>
-                    <a href="#" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Orders</a>
+                    <a href="{{ route('category.index') }}"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Categories</a>
+                </li>
+                <li>
+                    <a href="#"
+                        class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 dark:text-white dark:hover:text-blue-500 no-underline">Orders</a>
                 </li>
             </ul>
         </div>

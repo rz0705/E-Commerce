@@ -6,6 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class StoreProductRequest extends FormRequest
 {
+
     /**
      * Determine if the user is authorized to make this request.
      */
@@ -27,7 +28,7 @@ class StoreProductRequest extends FormRequest
             'slug' => 'required|string',
             'description' => 'required|string|max:255',
             'image_path' => 'required',
-            'price' => 'required|string',
+            'price' => 'required|numeric|min:5',
             'select_category' => 'required',
         ];
     }
@@ -42,6 +43,8 @@ class StoreProductRequest extends FormRequest
             'description.max' => 'Description must not exceed 255 characters.',
             'image_path.required' => 'Image path is required.',
             'price.required' => 'Price is required.',
+            'price.numeric' => 'Price should be numeric.',
+            'price.min' => 'Price should contain 5 digits.',
             'select_category.required' => 'Please choose product category.',
         ];
     }

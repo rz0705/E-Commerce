@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('description');
             $table->string('image_path');
-            $table->float('price',5,2);
+            $table->float('price',10,2);
             $table->timestamps();
         });
     }
